@@ -1,21 +1,7 @@
-.form {
-  padding: 1.5rem;
-  max-width: 30rem;
-  margin: 2rem auto;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #307e6c, #2b996d);
-}
-
-.input-group {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1.5rem;
-}
-
 .form label {
   display: block;
   margin-bottom: 0.25rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -41,14 +27,14 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
-  background: linear-gradient(180deg, #1f584b, #17493d);
-  color: #c2e9e0;
-  font-family: 'Roboto Condensed', sans-serif;
+  background: rgb(50, 6, 92);
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
   cursor: pointer;
 }
 
 .buttonAlt {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   border: none;
   background: transparent;
   color: #c2e9e0;
