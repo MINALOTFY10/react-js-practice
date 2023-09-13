@@ -1,45 +1,21 @@
-import { useState } from "react";
-
-import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
-import Cart from "./components/Cart/Cart";
-import CartProvider from "./store/CartProvider";
-import Checkout from "./components/Checkout/Checkout";
+import Counter from "./components/Counter";
+import { Fragment } from "react";
+import Header from "./components/Header";
+import Auth from "./components/Auth";
+import UserProfile from "./components/UserProfile";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "./store/index";
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
-  const [checkoutIsShown, setcheckoutIsShown] = useState(false);
-
-  //Control Cart visibility
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  };
-
-  //Control Checkout visibility
-  const showCheckoutHandler = () => {
-    setcheckoutIsShown(true);
-    setCartIsShown(false);
-  };
-
-  const hideCheckoutHandler = () => {
-    setcheckoutIsShown(false);
-  };
-  
+  const auth = useSelector((state) => state.auth.isAuthunticeted);
 
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} openCheckout={showCheckoutHandler} />}
-      {checkoutIsShown && <Checkout onClose={hideCheckoutHandler} onCancel={hideCheckoutHandler}/>}
-
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
+    <Fragment>
+      <Header />
+      {!auth && <Auth />}
+      {auth && <UserProfile />}
+      <Counter />
+    </Fragment>
   );
 }
 
