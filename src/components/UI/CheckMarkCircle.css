@@ -1,0 +1,29 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3498db;
+    margin: 0 auto;
+  }
+  
+  .check-mark {
+    font-size: 48px;
+    color: #fff;
+    animation: appear 2s ease forwards; /* Use a keyframes animation for the appearance */
+  }
+  
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
