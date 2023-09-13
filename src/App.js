@@ -1,20 +1,49 @@
-import Counter from "./components/Counter";
-import { Fragment } from "react";
-import Header from "./components/Header";
-import Auth from "./components/Auth";
-import UserProfile from "./components/UserProfile";
-import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "./store/index";
+import { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Cart from "./components/Cart/Cart";
+import Layout from "./components/Layout/Layout";
+import Products from "./components/Shop/Products";
+import { useSelector } from "react-redux";
+import { fetchCartData, sendCartData } from "./store/CartHttpActions";
+import Notification from "./components/UI/Notification";
+
+let isInitial = true;
 
 function App() {
-  const auth = useSelector((state) => state.auth.isAuthunticeted);
+  const dispatch = useDispatch();
+  const isShowCart = useSelector((state) => state.toggle.showStore);
+  const cart = useSelector((state) => state.store);
+
+  const notification = useSelector((state) => state.toggle.notification);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
+  }, [cart, dispatch]);
 
   return (
     <Fragment>
-      <Header />
-      {!auth && <Auth />}
-      {auth && <UserProfile />}
-      <Counter />
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
+      <Layout>
+        {isShowCart && <Cart />}
+        <Products />
+      </Layout>
     </Fragment>
   );
 }

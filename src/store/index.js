@@ -1,12 +1,12 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./CounterSlice";
-import authSlice from "./AuthSlice";
+import ToggleSlice from "./ToggleSlice";
+import StoreSlice from "./StoreSlice";
 
 const store = configureStore({
-  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
+  reducer: { toggle: ToggleSlice.reducer, store: StoreSlice.reducer },
 });
 
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
+export const toggleActions = ToggleSlice.actions;
+export const storeActions = StoreSlice.actions;
 
 export default store;
