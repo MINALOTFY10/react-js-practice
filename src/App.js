@@ -1,38 +1,21 @@
-import React, { useState } from "react";
-import AddUser from "./components/AddUser/AddUser";
-import UsersList from "./components/UsersList/UsersList";
+import React, { useContext } from 'react';
+
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import MainHeader from './components/MainHeader/MainHeader';
+import AuthContext from './store/auth-context';
 
 function App() {
-  const [users, setUsers] = useState([
-    {
-      id: Math.random(),
-      "user-name": "mina",
-      age: 21,
-    },
-    {
-      id: Math.random(),
-      "user-name": "Alex",
-      age: 21,
-    },
-    {
-      id: Math.random(),
-      "user-name": "Chris",
-      age: 21,
-    },
-  ]);
-
-  const submitHandler = (newItem) => {
-    setUsers((prevUsers) => {
-      return [newItem, ...prevUsers];
-    })
-  };
+  const ctx = useContext(AuthContext);
 
   return (
-    <div>
-      <AddUser onSubmit={submitHandler}></AddUser>
-
-      <UsersList items={users}></UsersList>
-    </div>
+    <React.Fragment>
+      <MainHeader />
+      <main>
+        {!ctx.isLoggedIn && <Login />}
+        {ctx.isLoggedIn && <Home />}
+      </main>
+    </React.Fragment>
   );
 }
 
