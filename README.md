@@ -1,6 +1,6 @@
 # React JS Practice
 
-This repository contains several demos source code to practice React JS.
+This repository contains several demos source code using React JS.
 
 ## How to use
 
